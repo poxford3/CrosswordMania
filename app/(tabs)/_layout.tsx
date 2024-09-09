@@ -32,6 +32,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="crossword"
+        options={{
+          title: 'Crossword',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'extension-puzzle' : 'extension-puzzle-outline'} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
