@@ -5,7 +5,9 @@ import { Stack } from 'expo-router';
 function HomeNavigator(): ReactElement {
 
   return (
-    <Stack />
+    <Stack screenOptions={{
+      headerShown: false
+    }} />
   );
 }
 
