@@ -11,7 +11,7 @@ export type MenuButtonProps = {
   color: string;
 };
 
-export default function MenuButton({ pathName, text, color }: MenuButtonProps) {
+export function MenuButton({ pathName, text, color }: MenuButtonProps) {
 
   return (
       <TouchableOpacity onPress={() => {
