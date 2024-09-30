@@ -7,8 +7,6 @@ import { SafeAreaView, Text, StyleSheet } from 'react-native';
 export default function Home() {
   return (
     <ThemedView style={styles.main}>
-      <MenuButton pathName={"/home/page1"} color={"purple"} text="Play" />
-      <MenuButton pathName={"/home/page2"} color={"green"} text="Saved" />
       <MenuButton pathName={"/home/crossword/easy"} color={"blue"} text="Easy" />
       <MenuButton pathName={"/home/crossword/medium"} color={"red"} text="Medium" />
       <MenuButton pathName={"/home/crossword/hard"} color={"gray"} text="Hard" />
