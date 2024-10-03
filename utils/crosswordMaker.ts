@@ -8,10 +8,12 @@ export type Word = {
 	startx?: number
 	starty?: number
   // 0 = vertical, 1 = horizontal
-	orientation?: number
+	orientation?: number,
+	position?: number
 }
 
 export type Crossword = string[][];
+
 
 // data used for testing
 let a: Word = {answer: "ELEPHANT", hint: "elephant"};
@@ -27,24 +29,11 @@ const x_data: Word[] = [
 	// {answer: "hey", hint: "hey"} as Word // option to define list
 ];
 
-export function createCrossword(SIZE: number, xword_data: Word[]): Crossword {
+export function createCrossword(SIZE: number, xword_data: Word[]): {words: Word[], crossword: Crossword} {
 	var words_used: Word[] = [];
 
 	function initiateBlank(n: number): Crossword {
-		// for testing:
-		const output: Crossword= [];
-	
-		for (let i = 0; i < n; i++) {
-				const row: string[] = [];
-				for (let j = 0; j < n; j++) {
-						row.push("~"); // Change to any initial value as needed
-				}
-				output.push(row);
-		}
-	
-		// in production:
-		// const output = Array.from({length: n}, () => Array(10).fill("~"));
-		// console.log('output', output);
+		const output: Crossword = Array.from({length: n}, () => Array(10).fill("~"));
 		return output;
 	}
 	
@@ -56,7 +45,7 @@ export function createCrossword(SIZE: number, xword_data: Word[]): Crossword {
 				crosswordToPrint = crosswordToPrint.concat(`${item}, `);
 			}
 			crosswordToPrint = crosswordToPrint.concat("]");
-			console.log(crosswordToPrint);
+			console.log(crosswordToPrint, entry);
 		}
 	
 	}
@@ -290,8 +279,12 @@ export function createCrossword(SIZE: number, xword_data: Word[]): Crossword {
 		working_board = multiBoardGen(xword_data, xword_data.length);
 	}
 
-	console.log(print_crossword(working_board));
-	return working_board;
+	// console.log(print_crossword(trimCrossword(working_board)));
+	// return trimCrossword(working_board);
+	return {
+		words: words_used, 
+		crossword: trimCrossword(working_board)
+	};
 }
 
-createCrossword(10, x_data);
+// createCrossword(10, x_data);

@@ -1,10 +1,11 @@
-import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Crossword, Word, createCrossword } from '@/utils/crosswordMaker';
+import { Word } from '@/utils/crosswordMaker';
+import { CrosswordBoard } from '@/components/CrosswordBoard';
 
 
-export default function CorsswordView() {
+export default function CrosswordView() {
 
   const { difficulty } = useLocalSearchParams();
 
@@ -25,28 +26,13 @@ export default function CorsswordView() {
     boardSize = 20; // hard
   }
 
-  let newCrossword: Crossword = createCrossword(boardSize, words);
-
-  const Body = () => {
-    return (
-      <>
-        {newCrossword.map((row: string[]) => {
-          row.map((val: string, index) => {
-            return (
-              <Text key={index}>{val != "~" ? val : ""}</Text>
-            )
-          })
-        })}
-      </>
-    )
-  }
 
   return (
     <SafeAreaView style={styles.body}>
-      <Text>CorsswordView</Text>
+      <Text>CrosswordView</Text>
       <Text>{difficulty}</Text>
       <Text>{boardSize}</Text>
-      <Body />
+      <CrosswordBoard boardSize={boardSize} wordsToUse={words} />
     </SafeAreaView>
   )
 }
