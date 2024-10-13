@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import { Href, router } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { FrameSizes } from '@/constants/Sizes';
@@ -14,13 +14,13 @@ export type MenuButtonProps = {
 export function MenuButton({ pathName, text, color }: MenuButtonProps) {
 
   return (
-      <TouchableOpacity onPress={() => {
+      <Pressable onPress={() => {
         router.navigate(pathName);
       }}
       style={[ styles.box, {backgroundColor: color} ]}
       >
         <ThemedText type='title' style={{color: "white"}}>{text}</ThemedText>
-      </TouchableOpacity>
+      </Pressable>
   )
 }
 

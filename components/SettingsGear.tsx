@@ -1,18 +1,28 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Pressable, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function SettingsGear() {
+type SettingsGearProps = {
+  children: React.ReactNode;
+  setModal: () => void;
+}
+
+export function SettingsGear({ setModal, children, ...props }: SettingsGearProps) {
   return (
-    <View style={styles.body}>
-      <Text>SettingsGear</Text>
-    </View>
+    <View style={styles.body} {...props}>
+      <Pressable onPress={setModal}>
+        <Ionicons name='settings' color={'white'} size={30}/>
+      </Pressable>
+      {children}
+  </View>
   )
 }
 
 const styles = StyleSheet.create({
   body: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
-   }
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+   },
+
 });
