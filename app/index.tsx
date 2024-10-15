@@ -1,6 +1,7 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Link } from "expo-router";
+import { View } from "react-native";
 
 export default function Index() {
   return (
@@ -16,7 +17,13 @@ export default function Index() {
         <ThemedText>
           Go To home
         </ThemedText>
-        </Link>
+      </Link>
+      <View style={{height: 80}} />
+      <Link href={"/login"}>
+        <ThemedText>
+          Go To login
+        </ThemedText>
+      </Link>
     </ThemedView>
   );
 }

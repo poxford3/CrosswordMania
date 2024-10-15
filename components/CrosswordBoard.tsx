@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Word, createCrossword } from '@/utils/crosswordMaker';
+import React, { useEffect, useState } from 'react';
+import { Word, createCrossword, Crossword } from '@/utils/crosswordMaker';
 import { SafeAreaView, Text, StyleSheet, ViewProps, View } from 'react-native';
 import { Letter } from './Letter';
+import { ThemedText } from './ThemedText';
 
 export type CrosswordBoardProps = ViewProps & {
   boardSize: number;
@@ -12,22 +13,22 @@ const QuestionBox = ({questions}: {questions: {across: Word[], down: Word[]}}) =
   return (
     <View style={{flexDirection: 'row', padding: 10}}>
         <View style={{padding: 10}}>
-          <Text>Across</Text>
+          <ThemedText>Across</ThemedText>
           {questions.across.map((acr: Word, idx_a: number) => {
             return (
               <View key={idx_a}>
-                <Text>{acr.hint}</Text>
+                <ThemedText>{acr.hint}</ThemedText>
               </View>
             )
             }
           )}
         </View>
         <View>
-          <Text>Down</Text>
+          <ThemedText>Down</ThemedText>
           {questions.down.map((down: Word, idx_d: number) => {
             return (
               <View key={idx_d}>
-                <Text>{down.hint}</Text>
+                <ThemedText>{down.hint}</ThemedText>
               </View>
             )
             }
@@ -37,9 +38,29 @@ const QuestionBox = ({questions}: {questions: {across: Word[], down: Word[]}}) =
   )
 }
 
+// const CrosswordGrid = ({ words, crossword }: CrosswordBoardProps) => {
+//   return (
+//     <View>
+//       {crossword.map((row, rowIdx) => (
+//         <View key={rowIdx} style={styles.row}>
+//           {row.map((cell, cellIdx) => (
+//             <View>
+
+//             </View>
+//           ))}
+//         </View>
+//       ))}
+//     </View>
+//   )
+// }
+
 export function CrosswordBoard({boardSize, wordsToUse}: CrosswordBoardProps) {
   const [inputs, setInputs] = useState(createCrossword(boardSize, wordsToUse));
   // let {words, crossword} = createCrossword(boardSize, wordsToUse);
+
+  // useEffect(() => {
+  //   setInputs(createCrossword(boardSize, wordsToUse));
+  // }, [])
 
   const questions = { 
     across: [] as Word[], 
@@ -74,5 +95,8 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
     // flex: 1
-   }
+   },
+   row: {
+
+   },
 });

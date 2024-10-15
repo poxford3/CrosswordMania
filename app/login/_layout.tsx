@@ -5,7 +5,12 @@ import { Stack } from 'expo-router';
 function LoginNavigator(): ReactElement {
 
   return (
-    <Stack />
+    <Stack screenOptions={{
+      headerShown: false
+    }}>
+      <Stack.Screen name='index' />
+      <Stack.Screen name='new_account' />
+    </Stack>
   );
 }
 

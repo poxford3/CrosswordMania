@@ -3,6 +3,8 @@ import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Word } from '@/utils/crosswordMaker';
 import { CrosswordBoard } from '@/components/CrosswordBoard';
+import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText';
 
 
 export default function CrosswordView() {
@@ -28,12 +30,12 @@ export default function CrosswordView() {
 
 
   return (
-    <SafeAreaView style={styles.body}>
-      <Text>CrosswordView</Text>
-      <Text>{difficulty}</Text>
-      <Text>{boardSize}</Text>
+    <ThemedView style={styles.body}>
+      <ThemedText>CrosswordView</ThemedText>
+      <ThemedText>{difficulty}</ThemedText>
+      <ThemedText>{boardSize}</ThemedText>
       <CrosswordBoard boardSize={boardSize} wordsToUse={words} />
-    </SafeAreaView>
+    </ThemedView>
   )
 }
 
