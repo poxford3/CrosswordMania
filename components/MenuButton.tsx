@@ -19,7 +19,7 @@ export function MenuButton({ pathName, text, color }: MenuButtonProps) {
       }}
       style={[ styles.box, {backgroundColor: color} ]}
       >
-        <ThemedText type='title' style={{color: "white"}}>{text}</ThemedText>
+        <ThemedText type='bigTitle' style={{color: "white"}}>{text}</ThemedText>
       </Pressable>
   )
 }

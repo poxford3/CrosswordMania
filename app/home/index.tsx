@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Settings } from '@/components/Settings';
 import { MenuButton } from '@/components/MenuButton';
@@ -24,6 +24,7 @@ export default function Home() {
       <MenuButton pathName={"/home/crossword/easy"} color={"blue"} text="Easy" />
       <MenuButton pathName={"/home/crossword/medium"} color={"red"} text="Medium" />
       <MenuButton pathName={"/home/crossword/hard"} color={"gray"} text="Hard" />
+      <MenuButton pathName={"/_sitemap"} color={"purple"} text="Test" />
       <Pressable onPress={() => {
         signOut();
       }}>
