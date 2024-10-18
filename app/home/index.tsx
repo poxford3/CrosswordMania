@@ -8,6 +8,7 @@ import { SettingsGear } from '@/components/SettingsGear';
 import Speaker from '@/components/Speaker';
 
 import { useSession } from '@/auth/ctx';
+import { RGBText } from '@/components/RGBText';
 
 
 export default function Home() {
@@ -21,10 +22,13 @@ export default function Home() {
 
   return (
     <ThemedView style={styles.main}>
+      <View>
+        <RGBText text={"Crossword Mania"} />
+      </View>
       <MenuButton pathName={"/home/crossword/easy"} color={"blue"} text="Easy" />
       <MenuButton pathName={"/home/crossword/medium"} color={"red"} text="Medium" />
       <MenuButton pathName={"/home/crossword/hard"} color={"gray"} text="Hard" />
-      <MenuButton pathName={"/_sitemap"} color={"purple"} text="Test" />
+      {/* <MenuButton pathName={"/_sitemap"} color={"purple"} text="All sites" /> */}
       <Pressable onPress={() => {
         signOut();
       }}>
