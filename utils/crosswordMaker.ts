@@ -279,7 +279,23 @@ export function createCrossword(SIZE: number, xword_data: Word[]): {words: Word[
 		working_board = multiBoardGen(xword_data, xword_data.length);
 	}
 
+	let acrossCount = 1;
+  let downCount = 1;
+
+  // get words in separate lists
+  // 
+  for (let i=0; i<words_used.length; i++) {
+    if (words_used[i].orientation === 0) { // vertical
+      words_used[i].position = downCount;
+      downCount++;
+    } else { // horizontal
+      words_used[i].position = acrossCount;
+      acrossCount++;
+    }
+  }
+
 	// console.log(print_crossword(trimCrossword(working_board)));
+	// console.log('words used', words_used);
 	// return trimCrossword(working_board);
 	return {
 		words: words_used, 

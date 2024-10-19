@@ -5,6 +5,8 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 export type ThemedViewProps = ViewProps & {
   lightColor?: string;
   darkColor?: string;
+  children: JSX.Element|JSX.Element[];
+
 };
 
 export function ThemedView({ style, lightColor, darkColor, ...otherProps }: ThemedViewProps) {

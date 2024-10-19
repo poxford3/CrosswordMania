@@ -8,7 +8,7 @@ type SettingsProps = {
   setModal: () => void;
 }
 
-export function Settings({isVisible, setModal}: SettingsProps) {
+export function SettingsModal({isVisible, setModal}: SettingsProps) {
   return (
     <Modal animationType="slide" visible={isVisible}>
       <ThemedView style={styles.body}>

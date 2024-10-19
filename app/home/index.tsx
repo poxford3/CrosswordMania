@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { Settings } from '@/components/Settings';
+import { RGBText } from '@/components/RGBText';
+import { Speaker } from '@/components/Speaker';
+import { SettingsModal } from '@/components/SettingsModal';
 import { MenuButton } from '@/components/MenuButton';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { SettingsGear } from '@/components/SettingsGear';
-import Speaker from '@/components/Speaker';
 
 import { useSession } from '@/auth/ctx';
-import { RGBText } from '@/components/RGBText';
 
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
         <ThemedText>hi</ThemedText>
       </View> */}
       <SettingsGear setModal={toggleModal}>
-        <Settings setModal={toggleModal} isVisible={modalOpen} />
+        <SettingsModal setModal={toggleModal} isVisible={modalOpen} />
       </SettingsGear>
       <Speaker />
     </ThemedView>

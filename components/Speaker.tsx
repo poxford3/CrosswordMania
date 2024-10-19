@@ -6,10 +6,12 @@ import { View, StyleSheet, Pressable } from 'react-native';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-export default function Speaker() {
+export function Speaker() {
 
   const speakerColor = useThemeColor({}, 'text');
 
+  // TODO refactor to set the initial state of the soundOn using a function instead
+  // of null then passing value into
   const [soundOn, setSoundOn] = useState<string>();
   const [sound, setSound] = useState<Audio.Sound>();
 
