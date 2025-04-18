@@ -10,49 +10,22 @@ export type CrosswordBoardProps = ViewProps & {
   wordsToUse: Word[];
 };
 
-const QuestionBox = ({questions}: {questions: {across: Word[], down: Word[]}}) => {
-  return (
-    <View style={{flexDirection: 'row', padding: 10}}>
-        <View style={{padding: 10}}>
-          <ThemedText>Across</ThemedText>
-          {questions.across.map((acr: Word, idx_a: number) => {
-            return (
-              <View key={idx_a}>
-                <ThemedText>{acr.hint}</ThemedText>
-              </View>
-            )
-            }
-          )}
-        </View>
-        <View>
-          <ThemedText>Down</ThemedText>
-          {questions.down.map((down: Word, idx_d: number) => {
-            return (
-              <View key={idx_d}>
-                <ThemedText>{down.hint}</ThemedText>
-              </View>
-            )
-            }
-          )}
-        </View>
-      </View>
-  )
-}
-
 const generateInitialGrid = (boardSize: number, words: Word[]) => {
-   const initialGrid = Array(boardSize - 1)
+  let initialGrid = new Array();
+   initialGrid = Array(boardSize)
     .fill(0)
-    .map(() => Array(boardSize).fill("X"));
+    .map(() => Array(boardSize + 1).fill("X"));
 
     words.forEach((word) => {
       if (word.startx !== undefined && 
           word.starty !== undefined && 
           word.orientation !== undefined) {
 
-        let x = word.startx - 1;
-        let y = word.starty - 1;
+        let x = word.startx;
+        let y = word.starty;
 
         for (let i = 0; i < word.answer.length; i++) {
+          console.log('stuff: ', x, y, word.answer, i)
           if (word.orientation === 1) {
             initialGrid[y][x + i] = "";
           } else if (word.orientation === 0) {
@@ -66,17 +39,18 @@ const generateInitialGrid = (boardSize: number, words: Word[]) => {
 }
 
 const generateAnswerGrid = (boardSize: number, words: Word[]) => {
-  const answerGrid = Array(boardSize - 1)
+  let answerGrid = new Array();
+  answerGrid = Array(boardSize)
   .fill(0)
-  .map(() => Array(boardSize).fill("X"));
+  .map(() => Array(boardSize + 1).fill("X"));
 
   words.forEach((word) => {
     if (word.startx !== undefined && 
         word.starty !== undefined && 
         word.orientation !== undefined) {
 
-      let x = word.startx - 1;
-      let y = word.starty - 1;
+      let x = word.startx;
+      let y = word.starty;
 
       for (let i = 0; i < word.answer.length; i++) {
         if (word.orientation === 1) {
@@ -92,7 +66,8 @@ const generateAnswerGrid = (boardSize: number, words: Word[]) => {
 }
 
 export function CrosswordBoard({boardSize, wordsToUse}: CrosswordBoardProps) {
-  const [inputs, setInputs] = useState(createCrossword(boardSize, wordsToUse));
+
+  // TODO comment things out til they work
   const [grid, setGrid] = useState(generateInitialGrid(boardSize, wordsToUse));
 
   useEffect(() => {
@@ -215,10 +190,11 @@ export function CrosswordBoard({boardSize, wordsToUse}: CrosswordBoardProps) {
   }
 
   return (
-    <ThemedView>
+    <ThemedView style={styles.body}>
+      <ThemedText>hi</ThemedText>
       {renderQuestions()}
       {renderGrid()}
-      <View>
+      {/* <View>
         <Pressable
           onPress={handleGenerate}
           style={styles.button}
@@ -247,37 +223,16 @@ export function CrosswordBoard({boardSize, wordsToUse}: CrosswordBoardProps) {
           <ThemedText>Solve</ThemedText>
         </Pressable>
         <View style={styles.gap} />
-      </View>
+      </View> */}
     </ThemedView>
   )
-
-  // const questions = { 
-  //   across: [] as Word[], 
-  //   down: [] as Word[]
-  // }
-
-  // // get words in separate lists
-  // // 
-  // for (let i=0; i<inputs.words.length; i++) {
-  //   if (inputs.words[i].orientation === 0) { // vertical
-  //     questions.down.push(inputs.words[i]);
-  //   } else { // horizontal
-  //     questions.across.push(inputs.words[i]);
-  //   }
-  // }
-
-  // return (
-  //   <View style={styles.body}>
-  //     <QuestionBox questions={questions} />
-  //   </View>
-  // )
 }
 
 const styles = StyleSheet.create({
   body: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // flex: 1
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1
    },
    row: {},
    cell: {},

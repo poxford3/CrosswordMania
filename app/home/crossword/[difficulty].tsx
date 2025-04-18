@@ -41,7 +41,7 @@ export default function CrosswordView() {
     boardSize = 20; // hard
   }
 
-  const words = createCrossword(boardSize, words_in).words;
+  const [words, setWords] = useState<Word[]>(createCrossword(boardSize, words_in).words)
 
 
   return (
